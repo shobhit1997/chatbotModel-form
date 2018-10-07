@@ -1,0 +1,12 @@
+{
+	"test":{
+		"PORT" : 8000,
+		"MONGODB_URI" : "mongodb://root:root123@ds113692.mlab.com:13692/chatform"
+	},
+	"development" : {
+		"PORT" : 8000,
+		"MONGODB_URI" : "mongodb://127.0.0.1:27017/chatform",
+		"JWT_SECRET" : "skfnihsfbdibfidhc",
+		"KEY":"bfjbsgbfsbckbzkcnkzefcsndkxksndkbcksz3y58g4387edg"
+	}
+}

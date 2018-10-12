@@ -33,10 +33,13 @@ var FormSchema = new Schema({
 		trim : true
 	},
 	questions: [questionSchema],
-	responses:[Object],
+	responses:[Schema.Types.Mixed],
 	shortUrl: {
 		type: String,
 		unique: true
+	},
+	creatorUsername:{
+		type: String
 	}
 });
 

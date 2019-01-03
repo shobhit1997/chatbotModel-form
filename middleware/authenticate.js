@@ -11,6 +11,7 @@ var authenticate = function(req,res,next){
 		decoded= jwt.verify(xAuth,process.env.JWT_SECRET);
 		console.log(decoded);
 		if(decoded.username==username && decoded.token==token && decoded.key==process.env.KEY){
+			req.username=username;
 			next();
 		}
 		else{

@@ -51,7 +51,7 @@ get(async function(req,res){
 	try{
 		var form=await Form.findOne({shortUrl:shortUrl});
 		if(form){
-			res.send(form);
+			res.send(_.pick(form,['_id','name','description','questions','creatorUsername','shortUrl']));
 		}
 		else{
 			res.status(404).send({message:"NOT FOUND"});

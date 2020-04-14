@@ -6,6 +6,7 @@ const bodyParser=require('body-parser');
 const formRouter=require('./routes/formRouter');
 var cors = require('cors');
 const loginRouter=require('./routes/loginRoute');
+const oauthRouter=require('./routes/oauthRoute');
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 var json2xls = require('json2xls');
@@ -23,6 +24,7 @@ app.use(function(req,res,next){
 app.get('/',(req,res)=>{
 res.send("Welcome");
 })
+app.use('/api/oauth',oauthRouter);
 app.use('/api/user',loginRouter);
 app.use('/api/form',formRouter);
 module.exports=app;

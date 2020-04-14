@@ -1,17 +1,17 @@
 const express=require('express');
 var router=express.Router();
 var Form=require('../models/form');
-var authenticate=require('../middleware/authenticate');
+var {authenticate,authenticate2}=require('../middleware/authenticate');
 const randomstring = require("randomstring");
 var {parse} = require('json2csv');
 var _ = require('lodash');
 var fs= require('fs');
 
 router.route('/createForm').
-post(authenticate,async function(req,res){
+post(authenticate2,async function(req,res){
 	var form=new Form(req.body);
 	form.shortUrl=randomstring.generate(3);
-	form.creatorUsername=req.username;
+	form.creatorUsername=req.user.name;
 	var form1 = await form.save();
 	if(form1){
 		res.send(form1);
@@ -22,9 +22,10 @@ post(authenticate,async function(req,res){
 
 });
 router.route('/myforms').
-get(authenticate, async function(req,res){
+get(authenticate2, async function(req,res){
+	console.log(req.user);
 	try{
-		var forms=await Form.find({creatorUsername:req.username});
+		var forms=await Form.find({creatorUsername:req.user.name});
 		if(forms){
 			var obj=forms.map((form)=>{
 				var body={
@@ -86,10 +87,10 @@ post(async function(req,res){
 });
 
 router.route('/getResponse/:id').
-get(authenticate, async function(req,res){
+get(authenticate2, async function(req,res){
 	var shortUrl=req.params.id;
 	try{
-		var form=await Form.findOne({shortUrl:shortUrl,creatorUsername:req.username});
+		var form=await Form.findOne({shortUrl:shortUrl,creatorUsername:req.user.name});
 		if(form){
 			var fields =Object.keys(form.responses[0])
                   	var csv = parse(form.responses,{ fields: fields });

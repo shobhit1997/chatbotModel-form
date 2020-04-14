@@ -1,10 +1,5 @@
 const mongoose=require('mongoose');
 var randomstring = require("randomstring");
-// const jwt = require('jsonwebtoken');
-// const _ = require('lodash');
-// const bcrypt = require('bcryptjs');
-// const config=require('../../server/config/config');
-// const moment=require('moment');
 var Schema=mongoose.Schema;
 
 var questionSchema = new Schema({
@@ -32,6 +27,14 @@ var FormSchema = new Schema({
 		type : String,
 		trim : true
 	},
+	welcomeMessage:{
+		type : String,
+		trim : true
+	},
+	finalMessage:{
+		type : String,
+		trim : true
+	},
 	questions: [questionSchema],
 	responses:[Schema.Types.Mixed],
 	shortUrl: {
@@ -40,6 +43,9 @@ var FormSchema = new Schema({
 	},
 	creatorUsername:{
 		type: String
+	},
+	colorCode:{
+		type:String
 	}
 });
 

@@ -17,13 +17,14 @@
   },
   "homepage": "https://github.com/shobhit1997/chatbotModel-form#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.3",
+    "json2csv": "^4.5.4",
     "json2xls": "^0.1.2",
     "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "mongoose": "^5.3.1",
     "randomstring": "^1.1.5",
     "request": "^2.88.0"

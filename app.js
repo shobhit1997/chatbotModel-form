@@ -19,7 +19,7 @@ app.use(function(req,res,next){
   
 	next();
 });
-app.use(json2xls.middleware);
+//app.use(json2xls.middleware);
 app.get('/',(req,res)=>{
 res.send("Welcome");
 })

@@ -3,8 +3,9 @@ var router=express.Router();
 var Form=require('../models/form');
 var authenticate=require('../middleware/authenticate');
 const randomstring = require("randomstring");
-var json2xls = require('json2xls');
+var {parse} = require('json2csv');
 var _ = require('lodash');
+var fs= require('fs');
 
 router.route('/createForm').
 post(authenticate,async function(req,res){
@@ -90,7 +91,18 @@ get(authenticate, async function(req,res){
 	try{
 		var form=await Form.findOne({shortUrl:shortUrl,creatorUsername:req.username});
 		if(form){
-			res.xls('data.xlsx', form.responses);
+			var fields =Object.keys(form.responses[0])
+                  	var csv = parse(form.responses,{ fields: fields });
+                  	var path='./'+Date.now()+'.csv'; 
+                   	fs.writeFile(path, csv, function(err,data) {
+                    		if (err) {
+					console.log(err)
+					throw err;
+				}
+                    		else{ 
+                      			res.download(path); // This is what you need
+                    		}
+                	}); 
 		}
 		else{
 			res.status(404).send({message:"NOT FOUND"});

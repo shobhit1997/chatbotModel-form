@@ -12,6 +12,7 @@ post(authenticate2,async function(req,res){
 	var form=new Form(req.body);
 	form.shortUrl=randomstring.generate(3);
 	form.creatorUsername=req.user.name;
+	form.creatorId=req.user._id;
 	var form1 = await form.save();
 	if(form1){
 		res.send(form1);
@@ -25,7 +26,7 @@ router.route('/myforms').
 get(authenticate2, async function(req,res){
 	console.log(req.user);
 	try{
-		var forms=await Form.find({creatorUsername:req.user.name});
+		var forms=await Form.find({creatorId:req.user._id});
 		if(forms){
 			var obj=forms.map((form)=>{
 				var body={
@@ -90,7 +91,7 @@ router.route('/getResponse/:id').
 get(authenticate2, async function(req,res){
 	var shortUrl=req.params.id;
 	try{
-		var form=await Form.findOne({shortUrl:shortUrl,creatorUsername:req.user.name});
+		var form=await Form.findOne({shortUrl:shortUrl,creatorId:req.user._id});
 		if(form){
 			var fields =Object.keys(form.responses[0])
                   	var csv = parse(form.responses,{ fields: fields });

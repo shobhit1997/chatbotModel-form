@@ -44,6 +44,9 @@ var FormSchema = new Schema({
 	creatorUsername:{
 		type: String
 	},
+	creatorId:{
+		type: Schema.ObjectId
+	},
 	colorCode:{
 		type:String
 	}

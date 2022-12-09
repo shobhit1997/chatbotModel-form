@@ -19,7 +19,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "json2xls": "^0.1.2",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
